@@ -41,6 +41,7 @@ const Hero = () => {
   
       <div className="mt-8 flex justify-center">
         <img
+          loading="lazy"
           src="/preview04.png"
           alt="hero"
           draggable='false'

@@ -60,7 +60,7 @@ export default function Prizes() {
               {/* IMagee */}
 
               <div className="flex items-center justify-center drop-shadow-[1px_1px_12px_rgba(255,0,0,0.65)] animate-pulse">
-                <img className="" src="/finalPrize03.png" alt="" draggable='false' />
+                <img loading="lazy" className="" src="/finalPrize03.png" alt="" draggable='false' />
               </div>
 
              

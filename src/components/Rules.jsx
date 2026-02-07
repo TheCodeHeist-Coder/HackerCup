@@ -104,6 +104,7 @@ export default function RulesPage() {
 
           <div className="w-full mt-12 h-96 flex items-center justify-center">
             <img
+            loading="lazy"
               src="/finalRules03.png"
               draggable='false'
               alt="Rules Warrior"

@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import FuzzyText from "../animations/FuzzyText";
+
 import TracksPage from "../animations/Track";
 
 export default function Tracks() {
@@ -51,18 +51,10 @@ export default function Tracks() {
 
                 <div className="relative flex flex-col items-center w-full mt-7 ">
                     {/* secong heading with aliens */}
-                    <div className="relative z-20 font-bold font-track">
-                        <FuzzyText
-                            baseIntensity={0.08}
-                            hoverIntensity={0.2}
-                            enableHover
-                            color="red"
-                            fontWeight={900}
-                            className="font-track"
-                        >
-                            Choose Your Weapon To Fight
-                        </FuzzyText>
-                    </div>
+                   <div className=" pb-8 relative">
+                <h1 className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"> Choose Your Weapon To Fight in The Battle </h1>
+                   
+              </div>
 
                     <div
                         className="
