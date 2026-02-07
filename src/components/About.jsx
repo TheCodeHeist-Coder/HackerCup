@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 const About = () => {
 
-
-
-
        const [showFinalBlast, setShowFinalBlast] = useState(false);
 
     useEffect(() => {
@@ -19,7 +16,7 @@ const About = () => {
       id="about"
       className="relative overflow-hidden  w-full min-h-screen px-4 sm:px-6 md:px-10 lg:px-16 py-12"
     >
-       <div className="absolute inset-0 bg-linear-to-b from-red-950/50 via-black to-red-950/80 opacity-40" />
+       <div className="absolute -z-10 inset-0 bg-linear-to-b from-red-950/50 via-black to-red-950/80 opacity-40" />
       {/* <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,0,0,0.18),transparent,black)]" /> */}
  
             <FloatingSparks />
@@ -104,6 +101,7 @@ const About = () => {
               <a
                 href="https://www.google.com/maps/place/Kamla+Nehru+Institute+of+Technology,+Sultanpur+(U.P.)/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-red-600 px-8 sm:px-12 py-3 text-gray-200 rounded-full text-base sm:text-lg font-semibold hover:bg-red-600 hover:text-white transition duration-300"
               >
                 📍 Open In Maps
