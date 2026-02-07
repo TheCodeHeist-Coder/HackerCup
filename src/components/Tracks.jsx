@@ -1,0 +1,153 @@
+
+import { useEffect, useRef, useState } from "react";
+import FuzzyText from "../animations/FuzzyText";
+import TracksPage from "../animations/Track";
+
+export default function Tracks() {
+
+     const sectionRef = useRef(null);
+      const [showEffects, setShowEffects] = useState(false);
+  
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setShowEffects(true);
+            }
+          },
+          { threshold: 0.35 }
+        );
+    
+        if (sectionRef.current) observer.observe(sectionRef.current);
+    
+        return () => observer.disconnect();
+      }, []);
+
+
+    return (
+        <div  ref={sectionRef} id="tracks" className="relative  w-full min-h-screen overflow-hidden">
+
+            <div className="absolute inset-0 bg-linear-to-b from-red-950/50 via-black to-black opacity-90" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,0,0,0.18),transparent,black)]" />
+
+      
+      {showEffects && <ConfettiSparks />}
+
+
+            <div className="max-w-337.5 mx-auto px-4 sm:px-8 lg:px-12 py-15  md:py-15">
+
+                <div className="flex flex-col items-center text-center gap-3 sm:gap-6">
+                    {/* title */}
+                    <h1
+                        className="
+              text-3xl sm:text-5xl md:text-7xl
+              font-extrabold tracking-widest
+              text-red-600 glowUp font-display
+            "
+                    >
+                        EXPLORE TRACKS
+                    </h1>
+                </div>
+
+                <div className="relative flex flex-col items-center w-full mt-7 ">
+                    {/* secong heading with aliens */}
+                    <div className="relative z-20 font-bold font-track">
+                        <FuzzyText
+                            baseIntensity={0.08}
+                            hoverIntensity={0.2}
+                            enableHover
+                            color="red"
+                            fontWeight={900}
+                            className="font-track"
+                        >
+                            Choose Your Weapon To Fight
+                        </FuzzyText>
+                    </div>
+
+                    <div
+                        className="
+              
+                absolute
+                -bottom-40 sm:-bottom-4 md:-bottom-8
+                z-10
+                animate-float
+                drop-shadow-[1px_1px_12px_rgba(255,0,0,0.65)]
+              "
+                    >
+                        <img
+                            src="/aliens.png"
+                            alt="Alien Warrior"
+                            draggable="false"
+                            className=""
+                        />
+                    </div>
+
+                    <div className="h-55 sm:h-70 md:h-90" />
+
+                </div>
+
+                <div className="mt-22 md:mt-20 lg:mt-1 ">
+                    <TracksPage />
+                </div>
+            </div>
+
+
+            <style>
+                {`
+          @keyframes float {
+            0% { transform: translateY(0px);  }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+          }
+          .animate-float {
+            animation: float 2s ease-in-out infinite;
+          }
+
+            .spark {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: red;
+          border-radius: 50%;
+          opacity: 0.8;
+          animation: sparkFall 1.8s linear infinite;
+        }
+
+        @keyframes sparkFall {
+          from {
+            transform: translateY(-40px) scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(300px) scale(0);
+            opacity: 0;
+          }
+        }
+
+
+        `}
+            </style>
+        </div>
+    );
+}
+
+
+
+
+function ConfettiSparks() {
+  return (
+    <>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <span
+          key={i}
+          className="spark"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 20}%`,
+            animationDelay: `${Math.random() * 1.2}s`,
+          }}
+        />
+      ))}
+    </>
+  );
+}

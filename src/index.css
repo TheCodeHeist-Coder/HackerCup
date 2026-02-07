@@ -1,0 +1,97 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Macondo&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+   
+    --font-display: "Orbitron", sans-serif;
+    --font-forYou: "Bebas Neue", sans-serif;
+    --font-name: "Raleway", sans-serif;
+    --font-track: "Trade Winds", system-ui;
+}
+
+
+.animation{
+    animation: bannerPulse 3s ease-in-out infinite;
+}
+
+.glowUp{
+    animation: glowUpDown 2s ease-in-out infinite;
+}
+
+@keyframes bannerPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+
+  @keyframes glowUpDown {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(239, 2, 2, 0.4);
+      opacity: 0.7;
+    }
+
+    50% {
+      text-shadow: 0 0 25px rgba(255, 0, 0, 1);
+      opacity: 1;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      .spark {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: red;
+          border-radius: 50%;
+          opacity: 0.8;
+          animation: sparkFall 1.8s linear infinite;
+        }
+
+        @keyframes sparkFall {
+          from {
+            transform: translateY(-40px) scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(300px) scale(0);
+            opacity: 0;
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        body, html {
+          overflow-x: hidden;
+        }
