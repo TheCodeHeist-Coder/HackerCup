@@ -8,6 +8,7 @@ import Timelines from '../components/TimeLines'
 import Rules from '../components/Rules'
 import FAQs from '../components/FAQs'
 import Footer from '../components/Footer'
+import Sponsors from '../components/Sponsers'
 
 
 
@@ -21,6 +22,7 @@ const Landing = () => {
       <About/>
       <Tracks/>
       <Prizes/>
+      <Sponsors />
       <Timelines/>
       <Rules/>
       <FAQs/>
