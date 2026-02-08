@@ -70,7 +70,7 @@ export default function TracksPage() {
       
 
       {/* Tracks Grid */}
-      <div className="relative z-10 max-w-6xl mx-auto mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="relative z-10 max-w-6xl mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {tracks.map((track, i) => {
           const Icon = track.icon;
           const isLocked = lockedWeapon === track.weapon;

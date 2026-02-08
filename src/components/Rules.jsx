@@ -91,10 +91,10 @@ export default function RulesPage() {
           <h1 className="
               text-3xl sm:text-5xl md:text-7xl
               font-extrabold tracking-widest
-              text-red-600 glowUp font-display mb-6
+              text-red-600 glowUp font-display 
             "> RULES  </h1>
 
-          <p className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]">
+          <p className="font-track md:pb-8 pt-3 tracking-widest font-extrabold md:text-4xl  text-[red]">
             Warrior Code of Conduct
           </p>
 
@@ -102,14 +102,14 @@ export default function RulesPage() {
 
           </div>
 
-          <div className="w-full mt-12 h-96 flex items-center justify-center">
+          <div className="w-full md:mt-12 mt-3 h-96 flex items-center justify-center">
             <img
             loading="lazy"
               src="/finalRules03.png"
               draggable='false'
               alt="Rules Warrior"
               className="
-       md:w-2/3 h-128
+       md:w-2/3 md:h-138 h-100
 
       /* Cinematic Fade Mask */
       mask-[linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]

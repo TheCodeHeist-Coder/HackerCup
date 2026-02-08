@@ -26,11 +26,11 @@ export default function Tracks() {
 
     return (
         <div  ref={sectionRef} id="tracks" className="relative  w-full min-h-screen overflow-hidden">
-
-            <div className="absolute inset-0 bg-linear-to-b from-red-950/50 via-black to-black opacity-90" />
+ 
+             <div className="absolute inset-0 bg-linear-to-b from-red-950/50 via-black to-black opacity-60" />
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,0,0,0.18),transparent,black)]" />
 
-      
+       
       {showEffects && <ConfettiSparks />}
 
 
@@ -49,36 +49,29 @@ export default function Tracks() {
                     </h1>
                 </div>
 
-                <div className="relative flex flex-col items-center w-full mt-7 ">
-                    {/* secong heading with aliens */}
-                   <div className=" pb-8 relative">
-                <h1 className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"> Choose Your Weapon To Fight in The Battle </h1>
+               <div className="py-5 relative">
+                <h1 className="font-track text-center tracking-widest font-extrabold md:text-4xl  text-[red]"> Choose Your Weapon To Fight </h1>
                    
               </div>
 
                     <div
-                        className="
-              
-                absolute
-                -bottom-40 sm:-bottom-4 md:-bottom-8
-                z-10
+                        className=" 
+                        flex justify-center items-center 
                 animate-float
                 drop-shadow-[1px_1px_12px_rgba(255,0,0,0.65)]
               "
                     >
                         <img
-                            src="/aliens.png"
+                            src="/finalAliens.png"
                             alt="Alien Warrior"
                             draggable="false"
                             className=""
                         />
                     </div>
 
-                    <div className="h-55 sm:h-70 md:h-90" />
+                    
 
-                </div>
-
-                <div className="mt-22 md:mt-20 lg:mt-1 ">
+                <div className="  ">
                     <TracksPage />
                 </div>
             </div>
