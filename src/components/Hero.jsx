@@ -173,22 +173,20 @@ const FloatingSparks = memo(() => {
   const sparks = useMemo(() => generateSparkPositions(sparkCount), [sparkCount]);
 
 
-
-
-function FloatingSparks() {
-  return (
+return (
     <>
-      {Array.from({ length: 30 }).map((_, i) => (
+      {sparks.map((spark) => (
         <span
-          key={i}
+          key={spark.key}
           className="spark"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 200}%`,
-            animationDelay: `${Math.random() * 2}s`,
+            left: spark.left,
+            top: spark.top,
+            animationDelay: spark.animationDelay,
           }}
         />
       ))}
     </>
   );
-}
+});
+
