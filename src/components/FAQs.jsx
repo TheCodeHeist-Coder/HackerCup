@@ -1,7 +1,7 @@
-
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { memo, useState, useCallback, useMemo } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 
 const faqData = [
   {
@@ -45,21 +45,25 @@ const faqData = [
   },
 ];
 
-export default function FaqPage() {
+const FaqPage = memo(() => {
   const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFaq = useCallback((index) => {
+    setOpenIndex(prev => prev === index ? null : index);
+  }, []);
 
   return (
     <div id="faqs" className="relative w-full min-h-screen bg-black text-white overflow-hidden py-24 px-6">
-    
+
       <FloatingEmbers />
 
-      
+
       <div className="relative max-w-5xl mx-auto text-center mb-16 z-10">
         <motion.h1
           initial={{ opacity: 0, y: -60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-             className="
+          className="
               text-3xl sm:text-5xl md:text-7xl
               font-extrabold tracking-widest
               text-red-600 glowUp font-display mb-6"
@@ -71,12 +75,12 @@ export default function FaqPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
-         className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"
+          className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"
         >
-          Warriors , seek answers before entering the battlefield 
+          Warriors , seek answers before entering the battlefield
         </motion.p>
 
-        
+
         <div className="mt-10 w-70 h-0.75 mx-auto bg-linear-to-r from-transparent via-red-500 to-transparent shadow-[0_0_25px_red]" />
       </div>
 
@@ -92,11 +96,9 @@ export default function FaqPage() {
               }`}
 
           >
-            
+
             <button
-              onClick={() =>
-                setOpenIndex(openIndex === index ? null : index)
-              }
+              onClick={() => toggleFaq(index)}
               className="w-full cursor-pointer flex justify-between items-center text-left"
             >
               <h2 className="text-lg sm:text-xl font-bold text-red-400 tracking-wide font-name">
@@ -109,7 +111,7 @@ export default function FaqPage() {
               />
             </button>
 
-           
+
             <AnimatePresence>
               {openIndex === index && (
                 <motion.div
@@ -135,7 +137,7 @@ export default function FaqPage() {
                   }}
                   className="overflow-hidden"
                 >
-                 
+
                   <motion.p
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -159,7 +161,7 @@ export default function FaqPage() {
         ))}
       </div>
 
-      
+
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -275,23 +277,27 @@ export default function FaqPage() {
       `}</style>
     </div>
   );
-}
+});
 
+export default FaqPage;
 
-function FloatingEmbers() {
+const FloatingEmbers = memo(() => {
+  const emberCount = useMemo(() => Math.min(getOptimalSparkCount(), 15), []);
+  const embers = useMemo(() => generateSparkPositions(emberCount, { useBottom: true, animationDelayMax: 3 }), [emberCount]);
+
   return (
     <>
-      {Array.from({ length: 20 }).map((_, i) => (
+      {embers.map((ember) => (
         <span
-          key={i}
+          key={ember.key}
           className="ember"
           style={{
-            left: `${Math.random() * 100}%`,
-            bottom: `${Math.random() * 40}%`,
-            animationDelay: `${Math.random() * 3}s`,
+            left: ember.left,
+            bottom: ember.bottom,
+            animationDelay: ember.animationDelay,
           }}
         />
       ))}
     </>
   );
-}
+});

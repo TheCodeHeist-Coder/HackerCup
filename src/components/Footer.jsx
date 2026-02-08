@@ -1,6 +1,5 @@
-
-
 import { motion } from "motion/react";
+import { memo } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -10,30 +9,30 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-export default function Footer() {
-  const members = [
-    {
-      name: "Parth Sohaney",
-      phone: "+91 7392049577",
-      linkedin: "https://www.linkedin.com/in/parthsohaney/",
-    },
-    {
-      name: "Ayush Jha",
-      phone: "+91 7084683701",
-      linkedin: "https://www.linkedin.com/in/ayushjha6104/",
-    },
-    {
-      name: "Rajat Yadav",
-      phone: "+91 7054479519",
-      linkedin: "https://www.linkedin.com/in/rajat-yadav-5237721b9/",
-    },
-      {
-      name: "Adeeb Khan",
-      phone: "+91 7017833992",
-      linkedin: "https://www.linkedin.com/in/adeeb001/",
-    },
-  ];
+const MEMBERS = [
+  {
+    name: "Parth Sohaney",
+    phone: "+91 7392049577",
+    linkedin: "https://www.linkedin.com/in/parthsohaney/",
+  },
+  {
+    name: "Ayush Jha",
+    phone: "+91 7084683701",
+    linkedin: "https://www.linkedin.com/in/ayushjha6104/",
+  },
+  {
+    name: "Rajat Yadav",
+    phone: "+91 7054479519",
+    linkedin: "https://www.linkedin.com/in/rajat-yadav-5237721b9/",
+  },
+  {
+    name: "Adeeb Khan",
+    phone: "+91 7017833992",
+    linkedin: "https://www.linkedin.com/in/adeeb001/",
+  },
+];
 
+const Footer = memo(() => {
   return (
     <footer id="contact" className="relative w-full bg-black text-white overflow-hidden">
       {/* ================= BACKGROUND ================= */}
@@ -56,9 +55,9 @@ export default function Footer() {
       {/* ================= CINEMATIC GLITCH HEADER ================= */}
 
 
-        {/* Divider Slash */}
-        <div className="mt-10 w-full h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent shadow-[0_0_25px_red]" />
-      
+      {/* Divider Slash */}
+      <div className="mt-10 w-full h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent shadow-[0_0_25px_red]" />
+
 
       {/* ================= FOOTER CONTENT ================= */}
       <div className="relative max-w-6xl mx-auto px-6 py-20 z-10">
@@ -73,10 +72,10 @@ export default function Footer() {
           <span className="text-red-500">SULTANPUR</span>
         </motion.h2>
 
-          <p className="text-md opacity-90 leading-relaxed text-center mt-3 font-name tracking-wider">
-              "Unleash your creativity, push your limits, and turn bold ideas into real innovation.
-              Join brilliant minds and build solutions that shape the future."
-            </p>
+        <p className="text-md opacity-90 leading-relaxed text-center mt-3 font-name tracking-wider">
+          "Unleash your creativity, push your limits, and turn bold ideas into real innovation.
+          Join brilliant minds and build solutions that shape the future."
+        </p>
 
         {/* Email Terminal */}
         <motion.div
@@ -88,7 +87,7 @@ export default function Footer() {
         >
           <FaEnvelope className="text-red-500 glow-icon" />
           <span className="font-semibold tracking-widest font-name text-gray-200">
-           gdgknit@knit.ac.in
+            gdgknit@knit.ac.in
           </span>
         </motion.div>
 
@@ -101,7 +100,7 @@ export default function Footer() {
 
         {/* ================= MEMBERS ================= */}
         <div className="mt-20 grid sm:grid-cols-3 gap-10">
-          {members.map((m, i) => (
+          {MEMBERS.map((m, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 70 }}
@@ -142,7 +141,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="mt-20 text-center text-gray-300 text-xs tracking-[0.4em]"
         >
-         © 2026 GDG KNIT Sultanpur - All Rights Reserved | Made With ❤ by GDG On Campus KNIT 
+          © 2026 GDG KNIT Sultanpur - All Rights Reserved | Made With ❤ by GDG On Campus KNIT
         </motion.div>
       </div>
 
@@ -243,18 +242,20 @@ export default function Footer() {
       `}</style>
     </footer>
   );
-}
+});
+
+export default Footer;
 
 /* ================= SOCIAL ICON ================= */
-function SocialIcon({ icon, link }) {
+const SocialIcon = memo(function SocialIcon({ icon, link }) {
   return (
     <a href={link} target="_blank" className="social-btn">
       {icon}
     </a>
   );
-}
+});
 
 /* ================= GLITCH TEXT ================= */
-function GlitchText({ text }) {
+const GlitchText = memo(function GlitchText({ text }) {
   return <div className="glitch-text">{text}</div>;
-}
+});

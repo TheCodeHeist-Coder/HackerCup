@@ -1,71 +1,54 @@
-
-import { useEffect, useRef, useState } from "react";
-
+import { memo, useMemo } from "react";
+import { useIntersectionObserver } from '../utils/useIntersectionObserver';
+import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 import { FaTrophy } from "react-icons/fa6";
 import { FaMedal } from "react-icons/fa";
 import { LuScrollText } from "react-icons/lu";
 import { CiStar } from "react-icons/ci";
 
-export default function Prizes() {
-  const sectionRef = useRef(null);
-  const [showEffects, setShowEffects] = useState(false);
-
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShowEffects(true);
-        }
-      },
-      { threshold: 0.35 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+const Prizes = memo(() => {
+  const [sectionRef, showEffects] = useIntersectionObserver({ once: true });
 
   return (
-    <section 
-    id="prize"
+    <section
+      id="prize"
       ref={sectionRef}
       className="relative w-full min-h-screen bg-black py-8 px-6 overflow-hidden"
     >
-      
+
       <div className="absolute inset-0 bg-linear-to-b from-red-950/50 via-black to-black opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,0,0,0.18),transparent,black)]" />
 
-      
+
       {showEffects && <ConfettiSparks />}
 
-      
+
       <div className="relative max-w-312.5 mx-auto text-center">
 
         {/* Heading */}
-        <div> 
-          <h1              className="
+        <div>
+          <h1 className="
               text-3xl sm:text-5xl md:text-7xl
               font-extrabold tracking-widest
               text-red-600 glowUp font-display mb-6
             "> PRIZES  </h1>
-         </div>
+        </div>
 
 
-              <div className=" pb-8 relative">
-                <h1 className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"> Victory Belongs to Those Who Build Fearlessly </h1>
-                   
-              </div>
+        <div className=" pb-8 relative">
+          <h1 className="font-track tracking-widest font-extrabold md:text-4xl  text-[red]"> Victory Belongs to Those Who Build Fearlessly </h1>
 
-              {/* IMagee */}
+        </div>
 
-              <div className="flex items-center justify-center drop-shadow-[1px_1px_12px_rgba(255,0,0,0.65)] animate-pulse">
-                <img loading="lazy" className="" src="/finalPrize03.png" alt="" draggable='false' />
-              </div>
+        {/* IMagee */}
 
-             
-                       
-             
+        <div className="flex items-center justify-center drop-shadow-[1px_1px_12px_rgba(255,0,0,0.65)] animate-pulse">
+          <img loading="lazy" className="" src="/finalPrize03.png" alt="" draggable='false' />
+        </div>
+
+
+
+
 
 
 
@@ -85,9 +68,9 @@ export default function Prizes() {
           </p>
         </div>
 
-      
+
         {/* Prizes */}
-        
+
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 font-name tracking-wider">
           {/* Second Prize */}
           <PrizeCard
@@ -115,7 +98,7 @@ export default function Prizes() {
           />
         </div>
 
-       <div
+        <div
           className="
             mt-20 
             rounded-2xl border border-red-500/30 
@@ -239,10 +222,11 @@ export default function Prizes() {
       </style>
     </section>
   );
-}
+});
 
+export default Prizes;
 
-function PrizeCard({ icon, title, amount, subtitle, highlight }) {
+const PrizeCard = memo(function PrizeCard({ icon, title, amount, subtitle, highlight }) {
   return (
     <div
       className={`
@@ -266,26 +250,28 @@ function PrizeCard({ icon, title, amount, subtitle, highlight }) {
       <p className="mt-3 text-gray-400">{subtitle}</p>
     </div>
   );
-}
+});
 
+const ConfettiSparks = memo(() => {
+  const sparkCount = useMemo(() => Math.min(getOptimalSparkCount(), 15), []);
+  const sparks = useMemo(() => generateSparkPositions(sparkCount, { topMax: 20, animationDelayMax: 1.2 }), [sparkCount]);
 
-function ConfettiSparks() {
   return (
     <>
-      {Array.from({ length: 20 }).map((_, i) => (
+      {sparks.map((spark) => (
         <span
-          key={i}
+          key={spark.key}
           className="spark"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 20}%`,
-            animationDelay: `${Math.random() * 1.2}s`,
+            left: spark.left,
+            top: spark.top,
+            animationDelay: spark.animationDelay,
           }}
         />
       ))}
     </>
   );
-}
+});
 
 
 

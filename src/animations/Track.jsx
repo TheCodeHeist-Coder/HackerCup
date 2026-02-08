@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, memo, useCallback, useMemo } from "react";
 import { LuSword } from "react-icons/lu";
 import { LuShield } from "react-icons/lu";
 import { FaGlobe } from "react-icons/fa";
@@ -6,7 +6,58 @@ import { FaBuilding } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { LuSprout } from "react-icons/lu";
 
-export default function TracksPage() {
+const TRACKS = [
+  {
+    title: "Smart Cities & Sustainable Urban Tech",
+    weapon: "Neural Blade",
+    desc: "Build intelligent systems that evolve.",
+    icon: FaBuilding,
+    details:
+      "Become a legendary warrior for saving a city. Best for futuristic builders.",
+  },
+  {
+    title: "Cybersecurity",
+    weapon: "Firewall Shield",
+    desc: "Defend the digital kingdom.",
+    icon: LuShield,
+    details:
+      "A shield forged in encryption flames. Perfect for defenders.",
+  },
+  {
+    title: "AI-Powered Health & Well-Being Solutions",
+    weapon: "Code Katana",
+    desc: "Craft next-gen shield.",
+    icon: FaGlobe,
+    details:
+      "A weapon works as a healing source. For nueral product with health warriors.",
+  },
+  {
+    title: "Clean Energy, Climate Action & GreenTech",
+    weapon: "Eco Flame Axe",
+    desc: "A true warrior saves environmnt",
+    icon: LuSprout,
+    details:
+      " Warriors who know very well to fight with Climate actions ",
+  },
+  {
+    title: "Open Innovation",
+    weapon: "Warrior's Choice",
+    desc: "Any bold idea enters battle.",
+    icon: LuSword,
+    details:
+      "An axe burning with green energy. For planet-saving warriors.",
+  },
+  {
+    title: "Inclusive Education & Digital Equality",
+    weapon: "Edu Axe ",
+    desc: "Protect the future with tech.",
+    icon: FaGraduationCap,
+    details:
+      "Every warrior should be responsible and intelligent",
+  },
+];
+
+const TracksPage = memo(() => {
   const [activeTrack, setActiveTrack] = useState(null);
   const [lockedWeapon, setLockedWeapon] = useState(null);
 
@@ -55,8 +106,8 @@ export default function TracksPage() {
       title: "Inclusive Education & Digital Equality",
       weapon: "Edu Axe ",
       desc: "Protect the future with tech.",
-      icon:  FaGraduationCap
-,
+      icon: FaGraduationCap
+      ,
       details:
         "Every warrior should be responsible and intelligent",
     },
@@ -67,11 +118,11 @@ export default function TracksPage() {
       {/* Background Glow */}
       {/* <div className="absolute inset-0 bg-gradient-to-b from-red-950/40 via-black to-black" /> */}
 
-      
+
 
       {/* Tracks Grid */}
       <div className="relative z-10 max-w-6xl mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-        {tracks.map((track, i) => {
+        {TRACKS.map((track, i) => {
           const Icon = track.icon;
           const isLocked = lockedWeapon === track.weapon;
 
@@ -81,18 +132,16 @@ export default function TracksPage() {
               onClick={() => setActiveTrack(track)}
               className={`group cursor-pointer rounded-2xl border p-6 transition-all duration-300
               
-              ${
-                isLocked
+              ${isLocked
                   ? "border-red-500 bg-red-950/50 shadow-[0_0_35px_rgba(255,0,0,0.8)] animate-unlockPulse"
                   : "border-red-600/60  hover:border-red-500 hover:shadow-[2px_15px_20px_rgba(255,0,0,0.5)]"
-              }`}
+                }`}
             >
               {/* Icon */}
               <div className="flex justify-between items-center font-sans">
                 <Icon
-                  className={`w-10 h-10 ${
-                    isLocked ? "text-red-400" : "text-red-500"
-                  } cursor-pointer`}
+                  className={`w-10 h-10 ${isLocked ? "text-red-400" : "text-red-500"
+                    } cursor-pointer`}
                 />
 
                 {isLocked && (
@@ -121,8 +170,8 @@ export default function TracksPage() {
       {activeTrack && (
         <WeaponModal
           track={activeTrack}
-          onClose={() => setActiveTrack(null)}
-          onLock={(weapon) => setLockedWeapon(weapon)}
+          onClose={handleCloseModal}
+          onLock={handleLockWeapon}
         />
       )}
 
@@ -142,16 +191,18 @@ export default function TracksPage() {
       </style>
     </div>
   );
-}
+});
+
+export default TracksPage;
 
 /* ============================= */
 /* Weapon Modal */
 /* ============================= */
 
-function WeaponModal({ track, onClose, onLock }) {
+const WeaponModal = memo(function WeaponModal({ track, onClose, onLock }) {
   const [locked, setLocked] = useState(false);
 
-  const lockWeapon = () => {
+  const lockWeapon = useCallback(() => {
     setLocked(true);
 
     // Close modal + lock card automatically
@@ -159,7 +210,7 @@ function WeaponModal({ track, onClose, onLock }) {
       onLock(track.weapon);
       onClose();
     }, 1000);
-  };
+  }, [onLock, onClose, track.weapon]);
 
   const Icon = track.icon;
 
@@ -294,4 +345,4 @@ function WeaponModal({ track, onClose, onLock }) {
       </style>
     </div>
   );
-}
+});

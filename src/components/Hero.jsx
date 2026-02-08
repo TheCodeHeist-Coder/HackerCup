@@ -2,13 +2,15 @@ import Countdown from "./CountDown";
 import { FaLocationDot } from "react-icons/fa6";
 import { LuSchool } from "react-icons/lu";
 import { SiHackaday } from "react-icons/si";
+import { memo, useEffect, useMemo, useState } from 'react';
+import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 
 import { useEffect, useRef, useState } from 'react'
 import { CgInstagram } from "react-icons/cg";
 
-const Hero = () => {
 
 
+  const [showFinalBlast, setShowFinalBlast] = useState(false);
 
   const [showFinalBlast, setShowFinalBlast] = useState(false);
 
@@ -164,10 +166,13 @@ const Hero = () => {
 
     </section>
   );
-};
+});
 
 export default Hero;
 
+const FloatingSparks = memo(() => {
+  const sparkCount = useMemo(() => getOptimalSparkCount(), []);
+  const sparks = useMemo(() => generateSparkPositions(sparkCount), [sparkCount]);
 
 
 
