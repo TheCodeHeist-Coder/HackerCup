@@ -8,8 +8,7 @@ import { getOptimalSparkCount, generateSparkPositions } from '../utils/performan
 import { CgInstagram } from "react-icons/cg";
 
 
-
- 
+const Hero = memo(() => { 
 
   const [showFinalBlast, setShowFinalBlast] = useState(false);
 
