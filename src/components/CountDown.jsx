@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, memo } from "react";
 
 export default function Countdown() {
   const targetDate = new Date("March 17, 2026 00:00:00").getTime();
@@ -11,33 +11,46 @@ export default function Countdown() {
     seconds: 0,
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
+  const rafIdRef = useRef(null);
+  const lastUpdateRef = useRef(0);
 
-      if (difference <= 0) {
-        clearInterval(interval);
-        return;
+  useEffect(() => {
+    const updateCountdown = (timestamp) => {
+      // Throttle updates to once per second using RAF
+      if (timestamp - lastUpdateRef.current >= 1000) {
+        const now = Date.now();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+          return;
+        }
+
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / (1000 * 60)) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+
+        lastUpdateRef.current = timestamp;
       }
 
-      setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / (1000 * 60)) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      });
-    }, 1000);
+      rafIdRef.current = requestAnimationFrame(updateCountdown);
+    };
 
-    return () => clearInterval(interval);
-  }, []);
+    rafIdRef.current = requestAnimationFrame(updateCountdown);
+
+    return () => {
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+    };
+  }, [targetDate]);
 
   return (
     <div className="flex flex-col items-center justify-center text-center w-full">
-
-      <div
-        className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12"
-      >
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12">
         <TimeBox label="Days" value={timeLeft.days} />
         <TimeBox label="Hours" value={timeLeft.hours} />
         <TimeBox label="Minutes" value={timeLeft.minutes} />
@@ -47,11 +60,10 @@ export default function Countdown() {
   );
 }
 
-function TimeBox({ label, value }) {
+const TimeBox = memo(function TimeBox({ label, value }) {
   return (
     <div className="relative">
-
-      <div className="absolute animate-pulse -inset-1 bg-red-600 rounded-2xl blur-xl opacity-40"></div>
+      <div className="absolute animate-pulse -inset-1 bg-red-600 rounded-2xl blur-xl opacity-40 motion-safe:animate-pulse motion-reduce:animate-none"></div>
       <div
         className="
           relative bg-black border border-red-500 rounded-2xl
@@ -82,5 +94,5 @@ function TimeBox({ label, value }) {
       </div>
     </div>
   );
-}
+});
 
