@@ -5,12 +5,11 @@ import { SiHackaday } from "react-icons/si";
 import { memo, useEffect, useMemo, useState } from 'react';
 import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 
-import { useEffect, useRef, useState } from 'react'
 import { CgInstagram } from "react-icons/cg";
 
 
 
-  const [showFinalBlast, setShowFinalBlast] = useState(false);
+ 
 
   const [showFinalBlast, setShowFinalBlast] = useState(false);
 
