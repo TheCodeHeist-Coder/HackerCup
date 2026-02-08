@@ -1,7 +1,8 @@
 
 import { motion } from "motion/react"
 import { FaFlagCheckered, FaSnowboarding, FaBolt, FaTrophy } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
+import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 
 const timelineData = [
     {
@@ -30,7 +31,7 @@ const timelineData = [
     },
 ];
 
-export default function TimeLines() {
+const TimeLines = memo(() => {
     const [showFinalBlast, setShowFinalBlast] = useState(false);
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export default function TimeLines() {
 
             <div className="absolute inset-0 fog-layer" />
 
-            
+
             <FloatingSparks />
 
 
@@ -94,10 +95,10 @@ export default function TimeLines() {
                                     {!isLeft && <TimelineCard item={item} />}
                                 </div>
 
-                               
+
                                 <div className="sm:hidden relative w-full flex flex-col items-center">
 
-                                   
+
                                     <div className="relative z-20 mb-6">
                                         <div className="mobile-node">{item.icon}</div>
                                     </div>
@@ -243,7 +244,7 @@ export default function TimeLines() {
             </style>
         </div>
     );
-}
+});
 
 
 function TimelineCard({ item }) {
@@ -264,21 +265,27 @@ function TimelineCard({ item }) {
     );
 }
 
+TimelineCard.displayName = "TimelineCard";
 
-function FloatingSparks() {
+export default TimeLines;
+
+const FloatingSparks = memo(() => {
+    const sparkCount = useMemo(() => Math.min(getOptimalSparkCount(), 15), []);
+    const sparks = useMemo(() => generateSparkPositions(sparkCount, { topMax: 20 }), [sparkCount]);
+
     return (
         <>
-            {Array.from({ length: 18 }).map((_, i) => (
+            {sparks.map((spark) => (
                 <span
-                    key={i}
+                    key={spark.key}
                     className="spark"
                     style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 20}%`,
-                        animationDelay: `${Math.random() * 2}s`,
+                        left: spark.left,
+                        top: spark.top,
+                        animationDelay: spark.animationDelay,
                     }}
                 />
             ))}
         </>
     );
-}
+});
