@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { CgMail } from "react-icons/cg";
 import { memo } from "react";
 import {
   FaInstagram,
@@ -12,22 +13,22 @@ import {
 const MEMBERS = [
   {
     name: "Parth Sohaney",
-    phone: "+91 7392049577",
+    email: "gdgknit@knit.ac.in",
     linkedin: "https://www.linkedin.com/in/parthsohaney/",
   },
   {
     name: "Ayush Jha",
-    phone: "+91 7084683701",
+    email: "gdgknit@knit.ac.in",
     linkedin: "https://www.linkedin.com/in/ayushjha6104/",
   },
   {
     name: "Rajat Yadav",
-    phone: "+91 7054479519",
+    email: "gdgknit@knit.ac.in",
     linkedin: "https://www.linkedin.com/in/rajat-yadav-5237721b9/",
   },
   {
     name: "Adeeb Khan",
-    phone: "+91 7017833992",
+    email: "gdgknit@knit.ac.in",
     linkedin: "https://www.linkedin.com/in/adeeb001/",
   },
 ];
@@ -113,9 +114,9 @@ const Footer = memo(() => {
                 {m.name}
               </h3>
 
-              <p className="flex items-center gap-2 mt-4 text-gray-300 text-sm">
-                <FaPhoneAlt className="text-red-500 glow-icon" />
-                {m.phone}
+              <p className="flex items-center gap-2 mt-4 text-gray-200 text-sm">
+                <CgMail className="text-red-500 glow-icon" />
+                {m.email}
               </p>
 
               <a
