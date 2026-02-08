@@ -5,9 +5,12 @@ import { SiHackaday } from "react-icons/si";
 import { memo, useEffect, useMemo, useState } from 'react';
 import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
 
-const Hero = memo(() => {
+import { useEffect, useRef, useState } from 'react'
+import { CgInstagram } from "react-icons/cg";
 
 
+
+  const [showFinalBlast, setShowFinalBlast] = useState(false);
 
   const [showFinalBlast, setShowFinalBlast] = useState(false);
 
@@ -96,8 +99,59 @@ const Hero = memo(() => {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center gap-10">
 
+    {/*  Register BUtton Added */}
+     <div className="w-full py-12 flex items-center justify-center">
+  <div className="flex flex-row items-center justify-center gap-6 sm:gap-10 px-4">
+    <a
+      href="https://unstop.com/hackathons/purvanchal-technical-hackathon-kamla-nehru-institute-of-technology-knit-sultanpur-1600541"
+      target="_blank"
+      className="
+        border-2 border-red-600
+        px-6 sm:px-12 lg:px-16
+        py-3 sm:py-5
+        shadow-[2px_4px_16px_rgba(255,0,0,1)]
+        rounded-full
+        text-gray-100
+        font-extrabold
+        font-display
+        tracking-[2px] sm:tracking-[4px]
+        hover:bg-red-600
+        transition-all duration-300
+        text-sm sm:text-base
+        whitespace-nowrap
+      "
+    >
+      REGISTER NOW
+    </a>
+
+    <a
+      href="https://www.instagram.com/gdgoncampusknitsul/"
+      target="_blank"
+      className="
+        border-2 
+        border-red-700
+        hover:scale-105
+        shadow-[2px_4px_16px_rgba(255,0,0,1)]
+        rounded-full
+        p-2 sm:p-3
+       
+        hover:border-gray-100
+        transition-all duration-300
+        flex items-center justify-center
+      "
+    >
+      <CgInstagram className="text-white font-semibold w-8 h-8 sm:w-8 sm:h-8" />
+    </a>
+
+  </div>
+</div>
+
+
+
+
+
+        <div className="mt-4 flex flex-col items-center gap-10">
           <h1
             className="font-display tracking-widest font-medium 
           text-2xl sm:text-3xl md:text-5xl text-gray-100 text-center"
@@ -120,19 +174,23 @@ const FloatingSparks = memo(() => {
   const sparkCount = useMemo(() => getOptimalSparkCount(), []);
   const sparks = useMemo(() => generateSparkPositions(sparkCount), [sparkCount]);
 
+
+
+
+function FloatingSparks() {
   return (
     <>
-      {sparks.map((spark) => (
+      {Array.from({ length: 30 }).map((_, i) => (
         <span
-          key={spark.key}
+          key={i}
           className="spark"
           style={{
-            left: spark.left,
-            top: spark.top,
-            animationDelay: spark.animationDelay,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 200}%`,
+            animationDelay: `${Math.random() * 2}s`,
           }}
         />
       ))}
     </>
   );
-});
+}
