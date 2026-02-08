@@ -36,7 +36,7 @@ const Navbar = memo(() => {
         <div className="relative flex justify-between items-center h-16 px-6 md:px-10 rounded-full border border-red-600 bg-gray-950/70 backdrop-blur-2xl">
 
           {/* Logo Section */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div  className="flex items-center gap-2 shrink-0">
             <img
               src="/logo.png"
               alt="logo"
@@ -65,7 +65,7 @@ const Navbar = memo(() => {
 
           <button
             onClick={toggleMenu}
-            className="lg:hidden text-gray-200 cursor-pointer flex-shrink-0"
+            className="lg:hidden text-gray-200 cursor-pointer shrink-0"
           >
             {isOpen ? <GiCrossedSabres size={28} /> : <TiThMenu size={28} />}
           </button>
