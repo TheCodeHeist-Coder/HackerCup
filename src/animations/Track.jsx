@@ -61,58 +61,6 @@ const TracksPage = memo(() => {
   const [activeTrack, setActiveTrack] = useState(null);
   const [lockedWeapon, setLockedWeapon] = useState(null);
 
-  const tracks = [
-    {
-      title: "Smart Cities & Sustainable Urban Tech",
-      weapon: "Neural Blade",
-      desc: "Build intelligent systems that evolve.",
-      icon: FaBuilding,
-      details:
-        "Become a legendary warrior for saving a city. Best for futuristic builders.",
-    },
-    {
-      title: "Cybersecurity",
-      weapon: "Firewall Shield",
-      desc: "Defend the digital kingdom.",
-      icon: LuShield,
-      details:
-        "A shield forged in encryption flames. Perfect for defenders.",
-    },
-    {
-      title: "AI-Powered Health & Well-Being Solutions",
-      weapon: "Code Katana",
-      desc: "Craft next-gen shield.",
-      icon: FaGlobe,
-      details:
-        "A weapon works as a healing source. For nueral product with health warriors.",
-    },
-    {
-      title: "Clean Energy, Climate Action & GreenTech",
-      weapon: "Eco Flame Axe",
-      desc: "A true warrior saves environmnt",
-      icon: LuSprout,
-      details:
-        " Warriors who know very well to fight with Climate actions ",
-    },
-    {
-      title: "Open Innovation",
-      weapon: "Warrior’s Choice",
-      desc: "Any bold idea enters battle.",
-      icon: LuSword,
-      details:
-        "An axe burning with green energy. For planet-saving warriors.",
-    },
-    {
-      title: "Inclusive Education & Digital Equality",
-      weapon: "Edu Axe ",
-      desc: "Protect the future with tech.",
-      icon: FaGraduationCap
-      ,
-      details:
-        "Every warrior should be responsible and intelligent",
-    },
-  ];
-
   return (
     <div className=" text-white px-6  relative overflow-hidden">
       {/* Background Glow */}
@@ -170,8 +118,8 @@ const TracksPage = memo(() => {
       {activeTrack && (
         <WeaponModal
           track={activeTrack}
-          onClose={handleCloseModal}
-          onLock={handleLockWeapon}
+          onClose={() => setActiveTrack(null)}
+          onLock={(weapon) => setLockedWeapon(weapon)}
         />
       )}
 
@@ -284,7 +232,7 @@ const WeaponModal = memo(function WeaponModal({ track, onClose, onLock }) {
             {/* Impact Pulse */}
             <div className="mx-auto w-20 h-20 rounded-full bg-red-600/40 blur-2xl animate-ping" />
 
-            <p className="mt-5 text-gray-200 tracking-wide text-lg">
+            <p className="mt-5 text-gray-100 font-semibold tracking-wide text-xl">
               Loadin Your Weapon...
             </p>
 
