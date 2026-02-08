@@ -71,32 +71,38 @@ const Prizes = memo(() => {
 
         {/* Prizes */}
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 font-name tracking-wider">
-          {/* Second Prize */}
-          <PrizeCard
-            icon={<FaMedal className="w-12 h-12 text-gray-200" />}
-            title="2nd Prize"
-            amount="₹15,000"
-            subtitle="Silver Warrior Reward"
-          />
+       <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 font-name tracking-wider">
 
-          {/* First Prize Highlight */}
-          <PrizeCard
-            icon={<FaTrophy className="w-14 h-14 text-yellow-400 trophy-shine" />}
-            title="1st Prize"
-            amount="₹30,000"
-            subtitle="Champion of GDG Hacker Cup"
-            highlight
-          />
+  <div className="order-2 md:order-1">
+    <PrizeCard
+      icon={<FaMedal className="w-12 h-12 text-gray-200" />}
+      title="2nd Prize"
+      amount="₹15,000"
+      subtitle="Silver Warrior Reward"
+    />
+  </div>
 
-          {/* Third Prize */}
-          <PrizeCard
-            icon={<FaMedal className="w-12 h-12 text-orange-400" />}
-            title="3rd Prize"
-            amount="₹10,000"
-            subtitle="Bronze Warrior Reward"
-          />
-        </div>
+  <div className="order-1 md:order-2">
+    <PrizeCard
+      icon={<FaTrophy className="w-14 h-14 text-yellow-400 trophy-shine" />}
+      title="1st Prize"
+      amount="₹30,000"
+      subtitle="Champion of GDG Hacker Cup"
+      highlight
+    />
+  </div>
+
+  <div className="order-3 md:order-3">
+    <PrizeCard
+      icon={<FaMedal className="w-12 h-12 text-orange-400" />}
+      title="3rd Prize"
+      amount="₹10,000"
+      subtitle="Bronze Warrior Reward"
+    />
+  </div>
+
+</div>
+
 
         <div
           className="
@@ -231,7 +237,7 @@ const PrizeCard = memo(function PrizeCard({ icon, title, amount, subtitle, highl
     <div
       className={`
         relative rounded-3xl p-10 border
-        ${highlight ? "border-red-500 bg-red-950/40 scale-[1.08]" : "border-white/15 bg-white/5"}
+        ${highlight ? "border-red-500 bg-red-950/40 md:scale-[1.08] scale-[1.04] " : "border-white/15 bg-white/5"}
         backdrop-blur-md transition-all duration-300
         hover:scale-[1.05]
         hover:shadow-[0_0_22px_rgba(255,0,0,0.55)]
