@@ -83,7 +83,7 @@ const RulesPage = memo(() => {
           <div className="w-full md:mt-12 mt-3 h-96 flex items-center justify-center">
             <img
               loading="lazy"
-              src="/finalRules03.png"
+              src="/rulesLight.png"
               draggable='false'
               alt="Rules Warrior"
               className="

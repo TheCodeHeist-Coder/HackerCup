@@ -43,7 +43,7 @@ const Hero = memo(() => {
         <div className="mt-8 flex justify-center">
           <img
             loading="lazy"
-            src="/preview04.png"
+            src="/preview05.png"
             alt="hero"
             draggable='false'
             className="w-55 sm:w-[320px] md:w-105 lg:w-125

@@ -172,7 +172,22 @@
 
 
 
+/* for sonser image */
 
+ @keyframes glowBlink {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px rgba(255,0,0,0.3));
+      opacity: 0.8;
+    }
+    50% {
+      filter: drop-shadow(0 0 10px rgba(255,0,0,0.9));
+      opacity: 1;
+    }
+  }
+
+  .glow-blink {
+    animation: glowBlink 2s ease-in-out infinite;
+  }
 
 
 
