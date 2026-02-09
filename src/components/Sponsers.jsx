@@ -145,12 +145,12 @@ export default function SponsorPage() {
 
 
         
-        <div className="mt-20  flex justify-center">
+        <div className="mt-20  flex justify-center items-center">
           <a
                href="https://mail.google.com/mail/?view=cm&to=gdgknit@knit.ac.in"
             target="_blank"
            rel="noopener noreferrer"
-            className="px-12 font-display md:text-xl text-sm shadow-[2px_4px_20px_rgba(255,0,0,1)] transition-all duration-300 py-4 rounded-full border-2 border-red-600 text-gray-200 font-semibold tracking-widest hover:bg-red-600 hover:text-white  flex items-center gap-3"
+            className="md:px-12 w-105 font-display md:text-xl  shadow-[2px_4px_20px_rgba(255,0,0,1)] transition-all duration-300 md:py-5 py-4 rounded-full border-2 border-red-600 text-gray-200 font-semibold tracking-widest hover:bg-red-600 hover:text-white  flex items-center justify-center gap-3"
           >
             <MdOutlineHandshake className="w-6 h-6" />
             Become Our Sponsor
