@@ -121,7 +121,7 @@ export default function SponsorPage() {
               </div>
 
               {/* Lore Text */}
-              <p className="md:mt-4 py-2 mt-2 text-gray-200 tracking-wider leading-relaxed max-w-xl mx-auto">
+              <p className="md:mt-4 pb-5 md:pb-2 mt-2 text-gray-200 tracking-wider leading-relaxed max-w-xl mx-auto">
                 The battlefield is ready.
                 <br />
                 The first legendary ally will soon appear here.
@@ -150,7 +150,7 @@ export default function SponsorPage() {
                href="https://mail.google.com/mail/?view=cm&to=gdgknit@knit.ac.in"
             target="_blank"
            rel="noopener noreferrer"
-            className="px-12 font-display  shadow-[2px_4px_20px_rgba(255,0,0,1)] transition-all duration-300 py-4 rounded-full border-2 border-red-600 text-gray-200 font-semibold tracking-widest hover:bg-red-600 hover:text-white  flex items-center gap-3"
+            className="px-12 font-display md:text-xl text-sm shadow-[2px_4px_20px_rgba(255,0,0,1)] transition-all duration-300 py-4 rounded-full border-2 border-red-600 text-gray-200 font-semibold tracking-widest hover:bg-red-600 hover:text-white  flex items-center gap-3"
           >
             <MdOutlineHandshake className="w-6 h-6" />
             Become Our Sponsor
