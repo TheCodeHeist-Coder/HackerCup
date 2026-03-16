@@ -74,7 +74,7 @@ const Hero = memo(() => {
             flex items-center gap-3 text-white"
             >
               <FaLocationDot className="w-5 h-5 text-green-500 animate-pulse" />
-              17th March, 2026
+              11th April, 2026
             </span>
 
             <span

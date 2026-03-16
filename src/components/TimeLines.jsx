@@ -3,6 +3,8 @@ import { motion } from "motion/react"
 import { FaFlagCheckered, FaSnowboarding, FaBolt, FaTrophy } from "react-icons/fa";
 import { memo, useEffect, useMemo, useState } from "react";
 import { getOptimalSparkCount, generateSparkPositions } from '../utils/performance';
+import { GiElectricalCrescent } from "react-icons/gi";
+import { desc } from "motion/react-client";
 
 const timelineData = [
     {
@@ -19,16 +21,24 @@ const timelineData = [
     },
     {
         title: "PPT Submission Deadline",
-        date: "Feb 28, 2026",
+        date: "March 25, 2026",
         icon: <FaFlagCheckered />,
         desc: "Final strike. Submit your innovation before time ends.",
     },
     {
+        title: "Round 1, Result Declaration",
+        date: "April 05, 2026",
+        icon: <GiElectricalCrescent />,
+        desc: "Get Tickets for entering in the final battle"
+
+    },
+    {
         title: "Final Offline Round",
-        date: "March 17, 2026",
+        date: "April 11, 2026",
         icon: <FaTrophy />,
         desc: "Champions rise. Glory, prizes, and rewards await.",
     },
+    
 ];
 
 const TimeLines = memo(() => {
@@ -119,7 +129,7 @@ const TimeLines = memo(() => {
             {showFinalBlast && (
                 <div className="relative mt-24 text-center z-10">
                     <div className="final-blast">
-                        🏆 GLORY AWAITS — MARCH 17, 2026
+                        🏆 GLORY AWAITS — Aprils 11, 2026
                     </div>
                 </div>
             )}
