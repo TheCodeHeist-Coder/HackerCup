@@ -86,7 +86,7 @@ const Prizes = memo(() => {
     <PrizeCard
       icon={<FaTrophy className="w-14 h-14 text-yellow-400 trophy-shine" />}
       title="1st Prize"
-      amount="₹30,000"
+      amount="₹25,000"
       subtitle="Champion of GDG Hacker Cup"
       highlight
     />

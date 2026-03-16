@@ -7,7 +7,7 @@ const faqData = [
   {
     question: "What is GDG HACKER CUP Hackathon?",
     answer:
-      "It is a inter college hackathon hosted by Kamla Nehru Institute Of Technology,Sultanpur. Its final round will be held on 17nd March, 2026 at KNIT, Sultanpur Campus.",
+      "It is a inter college hackathon hosted by Kamla Nehru Institute Of Technology,Sultanpur. Its final round will be held on 11th April, 2026 at KNIT, Sultanpur Campus.",
   },
   {
     question: "Who all are eligible to participate?",
@@ -26,7 +26,7 @@ const faqData = [
   {
     question: "Where and how do I submit my PPT for Round 1?",
     answer:
-      "You can submit your PPT through the Unstop registration page till 28 Feb, 2026.",
+      "You can submit your PPT through the Unstop registration page till 25 March, 2026.",
   },
   {
     question: "Where is it being held?",
