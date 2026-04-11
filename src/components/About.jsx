@@ -47,7 +47,7 @@ const About = memo(() => {
               <span className="text-red-600 font-bold">
                 HACKER CUP - 2026
               </span>
-              , a 24-hour hackathon centered on our ethos:
+              , a 12-hour hackathon centered on our ethos:
             </h2>
 
 
