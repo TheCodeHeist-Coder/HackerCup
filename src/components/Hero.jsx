@@ -92,7 +92,7 @@ const Hero = memo(() => {
             flex items-center gap-3 text-white"
             >
               <SiHackaday className="w-5 h-5 text-red-500 animate-pulse" />
-              24 Hour Hackathon
+              12 Hours Hackathon
             </span>
           </div>
         </div>
@@ -150,12 +150,7 @@ const Hero = memo(() => {
 
 
         <div className="mt-4 flex flex-col items-center gap-10">
-          <h1
-            className="font-display tracking-widest font-medium 
-          text-2xl sm:text-3xl md:text-5xl text-gray-100 text-center"
-          >
-            HACK STARTS IN
-          </h1>
+         
 
           <Countdown />
         </div>

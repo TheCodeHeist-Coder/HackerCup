@@ -1,8 +1,9 @@
 
+import { div } from "motion/react-client";
 import { useEffect, useState, useRef, memo } from "react";
 
 export default function Countdown() {
-  const targetDate = new Date("April 11, 2026 00:00:00").getTime();
+  const targetDate = new Date("April 12, 2026 8:00:00").getTime();
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -48,16 +49,44 @@ export default function Countdown() {
     };
   }, [targetDate]);
 
-  return (
-    <div className="flex flex-col items-center justify-center text-center w-full">
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12">
-        <TimeBox label="Days" value={timeLeft.days} />
-        <TimeBox label="Hours" value={timeLeft.hours} />
-        <TimeBox label="Minutes" value={timeLeft.minutes} />
-        <TimeBox label="Seconds" value={timeLeft.seconds} />
+
+  if (timeLeft.days == 0 && timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0) {
+
+    return (
+      <div className="text-gray-50 sm:py-20   flex flex-col gap-12 items-center justify-center"> 
+       <h1
+            className="font-display tracking-widest font-extrabold py-3
+          text-2xl sm:text-3xl md:text-6xl bg-clip-text text-transparent bg-linear-to-b from-red-500 to-red-800/50 text-center"
+          >
+            Hacking Has Been Started...
+          </h1>
+          <p className=" text-2xl sm:text-6xl font-bold font-track tracking-wider">  All the Best, Guys!  </p>
       </div>
-    </div>
-  );
+    )
+
+  } else {
+    return (
+      <div className="flex flex-col gap-15 items-center justify-center text-center w-full">
+      
+       <h1
+            className="font-display tracking-widest font-medium 
+          text-2xl sm:text-3xl md:text-5xl text-gray-100 text-center"
+          >
+            HACK STARTS IN
+          </h1>
+
+
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12">
+          <TimeBox label="Days" value={timeLeft.days} />
+          <TimeBox label="Hours" value={timeLeft.hours} />
+          <TimeBox label="Minutes" value={timeLeft.minutes} />
+          <TimeBox label="Seconds" value={timeLeft.seconds} />
+        </div>
+      </div>
+    );
+  }
+
+
 }
 
 const TimeBox = memo(function TimeBox({ label, value }) {
